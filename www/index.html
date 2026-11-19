@@ -5,18 +5,18 @@
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 html,body{margin:0;height:100%;overflow:hidden;font-family:Impact,"Arial Black",system-ui,sans-serif;font-weight:900;color:#14002e;background:linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg3))}
-#main{height:100%;padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom);display:flex;flex-direction:column;text-align:center;touch-action:none}
+#main{height:100%;padding:8px 10px;padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom);display:flex;flex-direction:column;text-align:center;touch-action:none}
 #head{flex:0 0 auto;display:flex;flex-direction:column;padding-top:3vh}
 #ttl{color:var(--ttl);line-height:1;white-space:nowrap;-webkit-text-stroke:2px #14002e;text-shadow:5px 5px 0 #14002e,9px 9px 0 var(--acc)}
 #dt{color:#fff;font-size:6.4vw;margin-top:2vh;text-shadow:3px 3px 0 #14002e;white-space:nowrap}
 #bw{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;position:relative}
-#btn{width:min(64vw,32vh);height:min(64vw,32vh);border-radius:50%;border:2.2vw solid #14002e;background:radial-gradient(circle at 35% 30%,var(--btn1),var(--btn2) 75%);box-shadow:0 1.6vh 0 #14002e,0 0 5vh var(--btn1);font:inherit;font-size:min(30vw,15vh);color:#14002e;cursor:pointer}
+#btn{width:64vw;height:64vw;max-width:32vh;max-height:32vh;border-radius:50%;border:2.2vw solid #14002e;background:radial-gradient(circle at 35% 30%,var(--btn1),var(--btn2) 75%);box-shadow:0 1.6vh 0 #14002e,0 0 5vh var(--btn1);font:inherit;font-size:15vh;color:#14002e;cursor:pointer}
 #btn:active,#btn.hit{transform:translateY(1vh) scale(.95);box-shadow:0 .5vh 0 #14002e,0 0 8vh #fff}
 #ch{flex:0 0 27%;min-height:0;background:#14002ecc;border:3px solid var(--line);border-radius:14px;margin:0 0 10px;padding:4px}
 #ch svg,.cht svg{width:100%;height:100%;display:block}
-#pull{position:fixed;left:50%;top:env(safe-area-inset-top);transform:translate(-50%,-150%);transition:.25s;z-index:5;background:#fff700;color:#14002e;border:4px solid #14002e;border-radius:0 0 22px 22px;padding:2vh 9vw;font:inherit;font-size:7vw;box-shadow:0 6px 0 #14002e}
+#pull{position:fixed;left:50%;top:0;top:env(safe-area-inset-top);transform:translate(-50%,-150%);transition:.25s;z-index:5;background:#fff700;color:#14002e;border:4px solid #14002e;border-radius:0 0 22px 22px;padding:2vh 9vw;font:inherit;font-size:7vw;box-shadow:0 6px 0 #14002e}
 #pull.on{transform:translate(-50%,0)}
-.pane{position:fixed;inset:0;z-index:9;display:none;overflow-y:auto;padding:calc(env(safe-area-inset-top) + 14px) 14px 24px;background:linear-gradient(160deg,#2b0066,#14002e);color:#fff;touch-action:pan-y}
+.pane{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9;display:none;overflow-y:auto;padding:14px 14px 24px;padding:calc(env(safe-area-inset-top) + 14px) 14px 24px;background:linear-gradient(160deg,#2b0066,#14002e);color:#fff;touch-action:pan-y}
 .pane.on{display:block}
 .pane h2{margin:0 0 14px;font-size:9vw;color:var(--ttl);text-shadow:3px 3px 0 var(--acc)}
 .b{display:block;width:100%;margin:0 0 14px;padding:3vh 3vw;border:4px solid #14002e;border-radius:18px;font:inherit;font-size:7vw;background:#00e5ff;color:#14002e;box-shadow:0 6px 0 #14002e;text-align:center}
@@ -25,20 +25,20 @@ label{display:block;font-size:5.6vw;margin:18px 0 6px;color:#00e5ff}
 input[type=text]{width:100%;font:inherit;font-size:9vw;padding:1.5vh 3vw;border-radius:14px;border:4px solid #fff700;background:#14002e;color:#fff700;text-transform:uppercase}
 input[type=range]{width:100%;height:7vh;accent-color:#ff0a78}
 .row{display:flex;justify-content:space-between;font-size:4.6vw;color:#ffe600}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;margin-top:10px}.chip{margin:0 8px 8px 0}
 .chip{background:#ff3d9a;border:3px solid #fff;border-radius:20px;padding:6px 14px;font:inherit;font-size:5vw;color:#fff}
 .pl{display:flex;justify-content:space-between;align-items:center}
 .pl span:last-child{background:#14002e;border-radius:50%;min-width:12vw;height:12vw;display:flex;align-items:center;justify-content:center;color:#fff700;font-size:6vw;padding:0 8px}
 .cht{height:34vh;background:#14002ecc;border:3px solid var(--line);border-radius:14px;padding:4px;margin-bottom:14px}
 .tot{font-size:8vw;color:#b6ff00;margin-bottom:12px}
-.dr{display:flex;align-items:center;gap:10px;font-size:5.6vw;margin:8px 0}
+.dr{display:flex;align-items:center;font-size:5.6vw;margin:8px 0}
 .dr i{display:block;height:4vw;background:linear-gradient(90deg,var(--bg1),var(--line));border-radius:4vw;min-width:4px}
-.dr b{margin-left:auto;color:#fff700}
+.dr span{margin-right:10px}.dr i{margin-right:10px}.dr b{margin-left:auto;color:#fff700}
 .snd{display:flex;justify-content:space-between;align-items:center;padding:2vh 4vw;margin:8px 0;border:4px solid #fff;border-radius:16px;font-size:5.6vw;background:#ffffff14}
 .snd.on{background:#b6ff00;color:#14002e;border-color:#14002e}
 .del{font-style:normal;background:#ff0a78;color:#fff;border-radius:50%;width:9vw;height:9vw;display:flex;align-items:center;justify-content:center}
-.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.ci{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:4.2vw;background:#ffffff14;border-radius:12px;padding:6px 10px}
+.cg{display:flex;flex-wrap:wrap;justify-content:space-between;margin:12px 0}
+.ci{display:flex;align-items:center;justify-content:space-between;width:48.5%;margin-bottom:10px;font-size:4.2vw;background:#ffffff14;border-radius:12px;padding:6px 10px}
 .ci input{width:14vw;height:9vw;border:3px solid #fff;border-radius:8px;padding:0;background:none}
 </style></head><body>
 <div id="main">
@@ -118,7 +118,9 @@ function barChart(rows){
 }
 
 /* ---------- main screen ---------- */
-function render(){
+function fit(){var w=window.innerWidth,h=window.innerHeight;$('btn').style.fontSize=Math.min(.3*w,.15*h)+'px'}
+window.addEventListener('resize',fit);
+function render(){fit();
  var P=D.settings.player,t=$('ttl');
  t.textContent='СОПЛИ_'+(P||'?');
  t.style.fontSize=Math.min(15,92/((P.length+6)*.74))+'vw';
